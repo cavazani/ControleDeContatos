@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace ControleDeContatos.Controllers {
     public class HomeController : Controller {
-        private readonly ILogger<HomeController> _logger;
+        // private readonly ILogger<HomeController> _logger;               //Apagar
 
-        public HomeController(ILogger<HomeController> logger) {
-            _logger = logger;
-        }
+        //public HomeController(ILogger<HomeController> logger) {         //Apagar Construtor dessa controller
+        //    _logger = logger;
+        //}
 
         public IActionResult Index() {
             return View();
