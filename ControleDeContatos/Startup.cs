@@ -1,9 +1,12 @@
-﻿namespace ControleDeContatos {
+﻿using ControleDeContatos.Data;
+using Microsoft.EntityFrameworkCore;
+
+namespace ControleDeContatos {
     public class Startup 
     {
         public Startup(IConfiguration configuration) 
         {
-            configuration = configuration;
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get;  }
@@ -11,8 +14,13 @@
         public void ConfigureServices(IServiceCollection services) 
         {
             services.AddControllersWithViews();
-        
+            services.AddEntityFrameworkSqlServer();
+                services.AddDbContext<BancoContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
         }
+
+       
+
+
 
         public void Configure(WebApplication app, IWebHostEnvironment environment) 
         {
