@@ -1,4 +1,5 @@
 ﻿using ControleDeContatos.Data;
+using ControleDeContatos.Repositorio;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControleDeContatos {
@@ -16,6 +17,7 @@ namespace ControleDeContatos {
             services.AddControllersWithViews();
             services.AddEntityFrameworkSqlServer();
                 services.AddDbContext<BancoContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DataBase")));
+            services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
         }
 
        

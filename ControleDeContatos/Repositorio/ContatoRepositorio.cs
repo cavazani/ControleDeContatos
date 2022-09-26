@@ -13,6 +13,7 @@ namespace ControleDeContatos.Repositorio {
         {
             //Gravar no banco de dados
             _bancoContext.Contatos.Add(contato);
+            _bancoContext.SaveChanges();
             return contato;
             
         }
