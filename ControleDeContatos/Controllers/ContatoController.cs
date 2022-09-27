@@ -14,6 +14,7 @@ namespace ControleDeContatos.Controllers {
 
         //Metodo action criado por padrão para essa controller
         public IActionResult Index() {
+            _contatoRepositorio.BuscarTodos();
             return View();
         }
 

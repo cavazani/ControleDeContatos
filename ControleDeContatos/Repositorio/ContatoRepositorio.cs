@@ -9,6 +9,11 @@ namespace ControleDeContatos.Repositorio {
         { 
             _bancoContext = bancoContext;
         }
+
+        public List<ContatoModel> BuscarTodos() 
+         {
+            return _bancoContext.Contatos.ToList();
+        }
         public ContatoModel Adicionar(ContatoModel contato) 
         {
             //Gravar no banco de dados
@@ -17,5 +22,6 @@ namespace ControleDeContatos.Repositorio {
             return contato;
             
         }
+
     }
 }
