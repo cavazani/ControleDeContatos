@@ -35,6 +35,13 @@ namespace ControleDeContatos.Controllers {
             return View(contato);
         }
 
+        //Metodo para pagar registro
+        public IActionResult Apagar(int Id) 
+        {
+            _contatoRepositorio.Apagar(Id);
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public IActionResult Criar(ContatoModel contato) 
         {
@@ -43,7 +50,8 @@ namespace ControleDeContatos.Controllers {
         }
 
         [HttpPost]
-        public IActionResult Alterar(ContatoModel contato) {
+        public IActionResult Alterar(ContatoModel contato) 
+        {
             _contatoRepositorio.Atualizar(contato);
             return RedirectToAction("Index"); //ação para redirecionar a index
         }

@@ -42,5 +42,18 @@ namespace ControleDeContatos.Repositorio {
             _bancoContext.SaveChanges();
             return contatoDB;
         }
+
+        //Metodo apagar
+        public bool Apagar(int id) 
+         {
+            ContatoModel contatoDB = ListarPorId(id);
+
+            if (contatoDB == null) throw new System.Exception("Houve um erro ao deletar o contato!");
+
+            _bancoContext.Contatos.Remove(contatoDB);
+            _bancoContext.SaveChanges();
+
+            return true;
+        }
     }
 }
