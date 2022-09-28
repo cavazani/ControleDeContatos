@@ -13,6 +13,7 @@ namespace ControleDeContatos.Models {
         public String Email { get; set; }
 
         [Required(ErrorMessage = "Digite o celular do contato")]
+        [Phone(ErrorMessage = "O celular informado não é valido!")]
         public String Celular { get; set; }
     }
 }
