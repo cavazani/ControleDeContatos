@@ -57,8 +57,13 @@ namespace ControleDeContatos.Controllers {
         [HttpPost]
         public IActionResult Alterar(ContatoModel contato) 
         {
-            _contatoRepositorio.Atualizar(contato);
-            return RedirectToAction("Index"); //ação para redirecionar a index
+            if (ModelState.IsValid) 
+            {
+                _contatoRepositorio.Atualizar(contato);
+                return RedirectToAction("Index"); //ação para redirecionar a index
+
+            }
+            return View("Editar", contato);
         }
     }
 }
