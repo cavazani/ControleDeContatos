@@ -38,20 +38,40 @@ namespace ControleDeContatos.Controllers {
         //Metodo para pagar registro
         public IActionResult Apagar(int Id) 
         {
-            _contatoRepositorio.Apagar(Id);
-            return RedirectToAction("Index");
+            try {
+               bool apagado = _contatoRepositorio.Apagar(Id);
+                if (apagado) {
+                    TempData["MensagemSucesso"] = "Contato apagado com sucesso";
+                }
+                else {
+                    TempData["MensagemErro"] = "Ops, não conseguimos apagar seu contato";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception erro) {
+
+                TempData["MensagemErro"] = $"Ops, não conseguimos apagar seu contato, mais detalhes do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         public IActionResult Criar(ContatoModel contato) 
         {
-            if (ModelState.IsValid) 
+            try 
             {
-                _contatoRepositorio.Adicionar(contato);
+                if (ModelState.IsValid) {
+                    _contatoRepositorio.Adicionar(contato);
+                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso";
+                    return RedirectToAction("Index"); //ação para redirecionar a index
+                }
+                return View(contato);
+            }
+            catch (Exception erro) 
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar seu contato, tente novamente, detalhe do erro:{erro.Message}";
                 return RedirectToAction("Index"); //ação para redirecionar a index
             }
-            
-            return View(contato);
         }
 
         [HttpPost]
